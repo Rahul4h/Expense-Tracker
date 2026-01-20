@@ -1,0 +1,9 @@
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://127.0.0.1:8000", // your FastAPI backend
+});
+
+export const getExpenses = () => api.get("/expenses");
+export const createExpense = (data) => api.post("/expenses", data);
+export const deleteExpense = (id) => api.delete(`/expenses/${id}`);
