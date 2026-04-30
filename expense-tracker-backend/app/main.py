@@ -115,6 +115,8 @@ def delete_expense(
     ).first()
     if not expense:
         raise HTTPException(status_code=404, detail="Expense not found")
+    
+    current_user.budget += expense.amount
     db.delete(expense)
     db.commit()
     return {"message": "Deleted successfully"}
